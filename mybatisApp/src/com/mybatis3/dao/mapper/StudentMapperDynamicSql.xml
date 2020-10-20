@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis3.dao.mapper.StudentMapperDynamicSql">
+
+	<select id="findStudentsOrderList" parameterType="java.lang.String" resultType="Student">
+	
+		<!-- 
+		<bind name="cn" value="_parameter"/>
+		select * from students order by ${cn} desc
+		-->
+		
+		select stud_id as studId, name, email, dob 
+		  from students 
+		 order by ${_parameter} desc
+	</select>
+	<!--
+	<select id="findStudents" parameterType="com.mybatis3.domain.Student" resultType="com.mybatis3.domain.Student">
+		select stud_id as studId, name, email, dob 
+		  from students
+		  		<if test="dob != null">
+		  			where dob &lt; = #{dob}
+		  		</if>
+	</select>
+	  -->
+	<select id="findStudents" parameterType="com.mybatis3.domain.Student" resultType="com.mybatis3.domain.Student">
+		select stud_id as studId, name, email, dob 
+		  from students
+		  <!-- 
+		  <where>
+		  		<if test="studId != null">
+		  			stud_id = #{studId} or 
+		  		</if>
+		  		<if test="name != null">
+		  			name=#{name} or 
+		  		</if>
+		  		<if test="email != null">
+		  			email = #{email} or
+		  		</if>
+		  		<if test="dob != null">
+		  			dob &lt;= #{dob}
+		  		</if>
+		  </where>
+		   -->
+		   <!-- 
+		   <where>
+		  	<trim suffixOverrides="or|and">
+		  		<if test="studId != null">
+		  			stud_id = #{studId} or 
+		  		</if>
+		  		<if test="name != null">
+		  			name=#{name} or 
+		  		</if>
+		  		<if test="email != null">
+		  			email = #{email} or
+		  		</if>
+		  		<if test="dob != null">
+		  			dob &lt;= #{dob}
+		  		</if>
+		  	</trim>	
+		  </where>
+		    -->
+		  
+		  	<trim prefix="where" suffixOverrides="or|and">
+		  		<if test="studId != null">
+		  			stud_id = #{studId} or 
+		  		</if>
+		  		<if test="name != null">
+		  			name=#{name} or 
+		  		</if>
+		  		<if test="email != null">
+		  			email = #{email} or
+		  		</if>
+		  		<if test="dob != null">
+		  			dob &lt;= #{dob}
+		  		</if>
+		  	</trim>	
+	</select>
+	<update id="updateStudentById" parameterType="Student">
+		update students
+			<!--  
+		  <set>
+		  	<trim suffixOverrides=",">
+		    <if test="name != null">
+		       name=#{name},
+		   </if>
+		   <if test="email != null">
+		       email=#{email},
+		   </if>
+		   <if test="dob != null">    
+		       dob=#{dob}
+		   </if>  
+		   </trim>
+		  </set>
+		   -->
+		   <trim prefix="set" suffixOverrides=",">
+		    <if test="name != null">
+		       name=#{name},
+		   </if>
+		   <if test="email != null">
+		       email=#{email},
+		   </if>
+		   <if test="dob != null">    
+		       dob=#{dob}
+		   </if>  
+		   </trim>
+		  
+		 where stud_id = #{studId}
+	
+	</update>
+
+
+
+
+</mapper>

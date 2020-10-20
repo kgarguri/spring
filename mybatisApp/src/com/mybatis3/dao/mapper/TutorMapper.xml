@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis3.dao.mapper.TutotMapper">
+	<!-- ####################   ############################## -->
+	<resultMap type="com.mybatis3.domain.Tutor" 
+	           id="tutorWithCoursesAndAddressResultMap" autoMapping="true">
+		<result  column="tutor_id" property="tutorId"/>
+		<result  column="tutor_name" property="name"/>
+		<association property="address" autoMapping="true" 
+		             javaType="com.mybatis3.domain.Address">
+		         <result column="addr_id" property="addrId"/>
+		</association>
+		<collection property="course" ofType="com.mybatis3.domain.Course"  
+		            resultMap="com.mybatis3.dao.mapper.CourseMapper.courseWithStudentsResultMap">
+		</collection>
+	</resultMap>
+	
+	
+	
+	<!-- @@@@@@@@@@@@@@@@@@@@  select @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<select id="findTutorByIdWithCoursesAndAddress" 
+	        parameterType="java.lang.Integer" 
+	        resultMap="tutorWithCoursesAndAddressResultMap">
+		SELECT t.tutor_id, t.name as tutor_name, email, a.addr_id, street, city, state, zip, country,
+       			course_id, c.name, description, start_date, end_date
+	      FROM tutors t 
+	      left outer join addresses a 
+	      on t.addr_id=a.addr_id
+		  left outer join courses c on t.tutor_id=c.tutor_id
+	      where t.tutor_id=#{tutorId}
+	</select>
+
+
+</mapper>
