@@ -1,11 +1,18 @@
 package com.itwill.controller.annotation;
 
+import java.util.ArrayList;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
+
+import com.itwill.dto.Guest;
 
 @Controller
 public class ResponseController {
@@ -84,9 +91,60 @@ public class ResponseController {
 		return rv;
 	}
 	
+	/*******************xml출력 View[XMLView]***********************/
+	@RequestMapping("response_xml_view_object.do")
+	public View response_xml_view_object(Model model) {
+		ArrayList<String> friendsList=new ArrayList<String>();
+		friendsList.add("김수미");
+		friendsList.add("김우미");
+		friendsList.add("김미미");
+		friendsList.add("김양미");
+		friendsList.add("김가미");
+		model.addAttribute("friendList",friendsList);
+		XMLView xmlView = new XMLView();
+		return xmlView;
+	}
+	
+	@RequestMapping("response_xml_view_name.do")
+	public String response_xml_view_name(Model model) {
+		ArrayList<String> friendsList=new ArrayList<String>();
+		friendsList.add("김수미");
+		friendsList.add("김우미");
+		friendsList.add("김미미");
+		friendsList.add("김양미");
+		friendsList.add("김가미");
+		model.addAttribute("friendList",friendsList);
+		return "xmlView";
+	}
+	
+	/*
+	 * REST 방식
+	 * Controller ---> MessageConverter(String,XML,JSON) --> Client
+	 */
+	@RequestMapping(value = "/response_string.do", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String responseString() {
+		return "string response body data[한글한글한글한글]</h3><hr/>";
+	}
+	@RequestMapping(value = "/response_html.do", produces = "text/html;charset=UTF-8")
+	public @ResponseBody String responseHtml() {
+		return "<h3>string response body data[한글한글한글한글]</h3><hr/>";
+	}
 
-	
-	
+	@RequestMapping(value = "/response_xml.do",produces = "text/xml;charset=UTF-8")
+	@ResponseBody
+	public Guest responseXml() {
+		Guest guest=new Guest(1, "KIM", "2020-03-09", "email", "homepage", "title", "content");
+		return guest;
+		// guest dto 에 @XmlRootElement 필요
+	}
 	
 	
 }
+
+
+
+
+
+
+
+
