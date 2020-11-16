@@ -17,8 +17,15 @@
                 var html = $(this).html();
                 var evalText = "$('div')." + html;
                 // 메서드를 실행합니다.
+                
                 eval(evalText);
-            });
+
+                /*
+                 eval("alert('ZZZZZZZZZZZZZZZZZZZZ');");
+                	= alert('ZZZZZZZZZZZZZZZZZZZZ');
+                */
+                
+                
 
             // 애니메이션을 시작합니다.
             setInterval(function () {

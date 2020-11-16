@@ -54,7 +54,7 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.2</version>
 		</dependency>
-   
+  <!-- ----------------------------------------------------------------- --> 
 2. web.xml파일 설정
 
      A. spring 인코딩 필터설정
