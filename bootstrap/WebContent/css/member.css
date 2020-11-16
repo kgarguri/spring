@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.btn-primary {
+    color: #FF0000;
+    background-color: #0000FF;
+    border-color: #FFFFFF;
+}
