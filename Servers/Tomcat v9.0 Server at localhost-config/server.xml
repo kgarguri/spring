@@ -154,7 +154,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 		
 
-      <Context docBase="guest_model2_spring" path="/guest_model2_spring" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2_spring"/><Context docBase="guest_model2_mybatis" path="/guest_model2_mybatis" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2_mybatis"/><Context docBase="guest_model2" path="/guest_model2" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2"/><Context docBase="guest_model1.5" path="/guest_model1.5" reloadable="true" source="org.eclipse.jst.jee.server:guest_model1.5"/></Host>
+      <Context docBase="uniShop" path="/unishop" reloadable="true" source="org.eclipse.jst.jee.server:uniShop"/></Host>
     </Engine>
   </Service>
 </Server>
