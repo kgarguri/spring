@@ -31,8 +31,16 @@
 		</property>      
     </bean>
 
-	<!--  view resolver (web.xml 설정 추가) -->	
-	<bean id="myirsv" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!--  view 등록 -->
+	<bean id="xmlView" class="com.itwill.controller.annotation.XMLView"></bean>
+	
+	<!--  view resolver 1 (web.xml 설정 추가) -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>	
+	<!--  view resolver 2 (web.xml 설정 추가) -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1"/>
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp"/>
 	</bean>

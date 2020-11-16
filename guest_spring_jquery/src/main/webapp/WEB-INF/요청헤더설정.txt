@@ -1,0 +1,27 @@
+$('#menu-e a').click(function(e){
+			$.ajax({
+						url:'guest_list_json_xml',
+						dataType:'json',
+						headers: {
+						 "Accept":"application/json"
+						},
+						success:function(xmlDoc){
+						 console.log(xmlDoc);
+				    	}
+			      });
+			e.preventDefault();
+		});
+		$('#menu-f a').click(function(e){
+			$.ajax({
+				url:'guest_list_json_xml',
+				dataType:'xml',
+				headers: {
+					
+					 "Accept":"text/xml"
+				 },
+				success:function(jsonObject){
+					 console.log(jsonObject);
+			     }
+			});
+			e.preventDefault();
+		});
