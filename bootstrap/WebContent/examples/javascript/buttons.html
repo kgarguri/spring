@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+<title>Template for Bootstrap</title>
+<!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="data:text/css;charset=utf-8,"
+	data-href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet"
+	id="bs-theme-stylesheet">
+<link href="../../assets/css/docs.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+<script src="../../assets/js/docs.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="bs-docs-section">
+			<h1 id="buttons" class="page-header">
+				Buttons <small>button.js</small>
+			</h1>
+
+			<p class="lead">Do more with buttons. Control button states or
+				create groups of buttons for more components like toolbars.</p>
+
+			<div class="bs-callout bs-callout-danger"
+				id="callout-buttons-ff-autocomplete">
+				<h4>Cross-browser compatibility</h4>
+				<p>
+					<a href="https://github.com/twbs/bootstrap/issues/793">Firefox
+						persists form control states (disabledness and checkedness) across
+						page loads</a>. A workaround for this is to use
+					<code> autocomplete="off"</code>
+					. See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=654072">Mozilla
+						bug #654072</a>.
+				</p>
+			</div>
+
+			<h2 id="buttons-stateful">Stateful</h2>
+			<p>
+				Add
+				<code> data-loading-text="Loading..."</code>
+				to use a loading state on a button.
+			</p>
+			<div class="bs-callout bs-callout-info"
+				id="callout-buttons-state-names">
+				<h4>Use whichever state you like!</h4>
+				<p>
+					For the sake of this demonstration, we are using
+					<code> data-loading-text</code>
+					and
+					<code> $().button('loading')</code>
+					, but that's not the only state you can use. <a
+						href="#buttons-methods">See more on this below in the <code>
+							$().button(string)</code> documentation
+					</a>.
+				</p>
+			</div>
+			<div class="bs-example">
+				<button type="button" id="loading-example-btn"
+					data-loading-text="로드중...." class="btn btn-primary">
+					Loading state</button>
+			</div>
+			<!-- /example -->
+			<xmp>
+			<button type="button" id="myButton" data-loading-text="Loading..."
+				class="btn btn-primary" autocomplete="off">Loading state</button>
+
+			<script>
+				/*
+				$('#myButton').on('click', function() {
+				    var $btn = $(this).button('loading')
+				    // business logic...
+				    $btn.button('reset');
+				});
+				 */
+			</script> </xmp>
+
+			<h2 id="buttons-single-toggle">Single toggle</h2>
+			<p>
+				Add
+				<code> data-toggle="button"</code>
+				to activate toggling on a single button.
+			</p>
+			<div class="bs-callout bs-callout-warning"
+				id="callout-buttons-single-pretoggled">
+				<h4>
+					Pre-toggled buttons need
+					<code> .active</code>
+					and
+					<code> aria-pressed="true"</code>
+				</h4>
+				<p>
+					For pre-toggled buttons, you must add the
+					<code> .active</code>
+					class and the
+					<code> aria-pressed="true"</code>
+					attribute to the
+					<code> button</code>
+					yourself.
+				</p>
+			</div>
+			<div class="bs-example">
+				<button type="button" class="btn btn-primary" data-toggle="button"
+					aria-pressed="false" autocomplete="off">Single toggle</button>
+			</div>
+			<!-- /example -->
+			<xmp>
+			<button type="button" class="btn btn-primary" data-toggle="button"
+				aria-pressed="false" autocomplete="off">Single toggle</button>
+			</xmp>
+
+			<h2 id="buttons-checkbox-radio">Checkbox / Radio</h2>
+			<p>
+				Add
+				<code> data-toggle="buttons"</code>
+				to a
+				<code> .btn-group</code>
+				containing checkbox or radio inputs to enable toggling in their
+				respective styles.
+			</p>
+			<div class="bs-callout bs-callout-warning"
+				id="callout-buttons-multi-preselected">
+				<h4>
+					Preselected options need
+					<code> .active</code>
+				</h4>
+				<p>
+					For preselected options, you must add the
+					<code> .active</code>
+					class to the input's
+					<code> label</code>
+					yourself.
+				</p>
+			</div>
+			<div class="bs-callout bs-callout-warning"
+				id="callout-buttons-only-click">
+				<h4>Visual checked state only updated on click</h4>
+				<p>
+					If the checked state of a checkbox button is updated without firing
+					a
+					<code> click</code>
+					event on the button (e.g. via
+					<code> &lt;input type="reset"&gt;</code>
+					or via setting the
+					<code> checked</code>
+					property of the input), you will need to toggle the
+					<code> .active</code>
+					class on the input's
+					<code> label</code>
+					yourself.
+				</p>
+			</div>
+			<div class="bs-example" data-example-id="buttons-checkbox">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-primary active"> <input
+						type="checkbox" checked autocomplete="off"> Checkbox 1
+						(pre-checked)
+					</label> <label class="btn btn-primary"> <input type="checkbox"
+						autocomplete="off"> Checkbox 2
+					</label> <label class="btn btn-primary"> <input type="checkbox"
+						autocomplete="off"> Checkbox 3
+					</label>
+				</div>
+			</div>
+			<!-- /example -->
+			<xmp>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary active"> <input
+					type="checkbox" autocomplete="off" checked> Checkbox 1
+					(pre-checked)
+				</label> <label class="btn btn-primary"> <input type="checkbox"
+					autocomplete="off"> Checkbox 2
+				</label> <label class="btn btn-primary"> <input type="checkbox"
+					autocomplete="off"> Checkbox 3
+				</label>
+			</div>
+			</xmp>
+
+			<div class="bs-example" data-example-id="buttons-radio">
+				<div class="btn-group" data-toggle="buttons">
+					<label class="btn btn-primary active"> <input type="radio"
+						name="options" id="option1" autocomplete="off" checked>
+						Radio 1 (preselected)
+					</label> <label class="btn btn-primary"> <input type="radio"
+						name="options" id="option2" autocomplete="off"> Radio 2
+					</label> <label class="btn btn-primary"> <input type="radio"
+						name="options" id="option3" autocomplete="off"> Radio 3
+					</label>
+				</div>
+			</div>
+			<!-- /example -->
+			<xmp>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary active"> <input type="radio"
+					name="options" id="option1" autocomplete="off" checked>
+					Radio 1 (preselected)
+				</label> <label class="btn btn-primary"> <input type="radio"
+					name="options" id="option2" autocomplete="off"> Radio 2
+				</label> <label class="btn btn-primary"> <input type="radio"
+					name="options" id="option3" autocomplete="off"> Radio 3
+				</label>
+			</div>
+			</xmp>
+
+			<h2 id="buttons-methods">Methods</h2>
+
+			<h4>$().button('toggle')</h4>
+			<p>Toggles push state. Gives the button the appearance that it
+				has been activated.</p>
+
+			<h4>$().button('reset')</h4>
+			<p>Resets button state - swaps text to original text.</p>
+
+			<h4>$().button(string)</h4>
+			<p>Swaps text to any data defined text state.</p>
+			<xmp>
+			<button type="button" id="myStateButton"
+				data-complete-text="finished!" class="btn btn-primary"
+				autocomplete="off">...</button>
+
+			<script>
+				$('#myStateButton').on('click', function() {
+					$(this).button('complete');// button text will be "finished!"
+				});
+			</script> 
+			</xmp>
+		</div>
+
+	</div>
+	<!-- Bootstrap core JavaScript
+        <!-- Placed at the end of the document so the pages load faster -->
+	<script>
+		$('#loading-example-btn').on('click', function() {
+		
+			$(this).button('finished!!!');// button text will be "finished!"
+			$(this).button('reset')
+		});
+	</script>
+</body>
+</html>
