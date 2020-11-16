@@ -27,14 +27,42 @@ td {
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		$('td').click(function(e) {   // e : 표준객채다
+			/*
+			console.log(e);
+			console.log(e.target.firstChild.nodeValue);
+			console.log(this);
+			console.log(this.target.firstChild.nodeValue);
+			*/
+			console.log('----------------------td click event------------------------');
+			console.log('1.event obeject:'+e);
+			console.log('2.event target:'+e.target);
+			console.log('3.this:'+this);
+			console.log('4.event type(click) :'+e.type);
+			console.log('5.td text(Element):'+e.target.firstChild.nodeValue);
+			console.log('6.td text(jQuery):'+$(e.target).text());
+		});
 		
-		
+		$('td').mouseenter(function(e) {   // e : 표준객채다
+			console.log('------------------------td mouseenter event-----------------');
+			console.log('1.event obeject:'+e);
+			console.log('2.event target:'+e.target);
+			console.log('3.this:'+this);
+			console.log('4.event type(click) :'+e.type);
+			console.log('5.td text(Element):'+e.target.firstChild.nodeValue);
+			console.log('6.td text(jQuery):'+$(e.target).text());
+			$(e.target).toggleClass('select');
+		});
 		
 		/*
 		var tdElementNodeList = document.getElementsByTagName("td")
 		for (var i = 0; i < tdElementNodeList.length; i++) {
 			tdElementNodeList.item(i).addEventListener("click", function(e) {
 				console.log(e);
+				console.log(e.target.firstChild.nodeValue);
+				console.log(this);
+				console.log(this.target.firstChild.nodeValue);
+				
 			});
 		}
 		*/

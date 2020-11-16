@@ -24,20 +24,51 @@ td {
 <script type="text/javascript">
 	$(function() {
 		$('#f').on('submit',function(e){
+			/*
+			폼을이용한 서버로의 jquery ajax요청
+			1.parameter생성
+			2.유효성체크
+			3.jqury ajax요청
+			4.submit default중지
+			*/
 			
+			/*
+			element 속성(attribute) 접근
+			*/
+			//set
+			$('#p_image').attr('src','icon1.png');
+			$('#p_image').attr('width','20px');
+			$('#p_image').attr('height','20px');
+			//get
+			console.log($('#p_image').attr('src'))
+			console.log($('#p_image').attr('weight'))
+			console.log($('#p_image').attr('height'))
 			/*
 			input element접근
 			*/
-			//read
-			
-			//set
-			
-			
-			/*
+			/*  read :
 			 입력 엘레멘트의 값을 접근할때는  .val() 을사용
-		      - .val() 은 DOM트리생성이후에 동적으로변하는 
-		        사용자입력데이타를 읽을수있다
+		      - .val() 은 DOM 트리 생성 이후에 동적으로 변하는 
+		        	사용자 입력데이타를 읽을 수 있다
+		        (ex. .attr() 은 최초 로딩할때 읽은 값만 가진다)
 		     */
+			var idValue=$("#id").val();
+			//var idValue=$("#id").attr('value');
+			
+			var nameValue=$('#name').val();
+			var aliasValue=$('#alias').val();
+			var jobValue=$('#job option:selected').val();
+			console.log('----------------input element read  .val()----------------------')
+			console.log(idValue);
+			console.log(nameValue);
+			console.log(aliasValue);
+			console.log(jobValue);
+			//set
+			console.log('--------------input element write  .val(data)--------------')
+			$('#alias').val('딘   소머즈~~~~~~~~');
+			
+			$('#job option:eq(2)').attr('selected','selected');
+			$("#job").val("회사원").attr("selected", "selected");
 		  
 		     
 		 e.preventDefault();
@@ -52,7 +83,7 @@ td {
 	
 	<div>
 		<form id="f" name="f" action="xxx.jsp">
-			아이디:<input type="text" name="id" id="id"  value="xxx"/>
+			아이디:<input type="text" name="id" id="id" value="xxx" />
 			<img id="p_image"  alt="프로필이미지" />
 			<br />
 			이이름:<input type="text"  id="name" name="name" /><br /> 
@@ -99,7 +130,7 @@ td {
 			$("#셀렉트ID option:eq(1)").attr("selected", "selected");
 			
 			// text 값으로 selected 속성 주기
-			$("#셀렉트ID")val("1번").attr("selected", "selected");
+			$("#셀렉트ID").val("1번").attr("selected", "selected");
 			or
 			$("#id").text("1번").attr("selected", "selected");
 			

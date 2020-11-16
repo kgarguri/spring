@@ -24,11 +24,28 @@ td {
 <script type="text/javascript">
 	$(function() {
 		$('#f').on('submit',function(e){
-			//alert('submit');
+			alert('submit');
+			
 			/*
-			ajax요청
-			1.parameter생성
+			폼을 이용한 서버로의 jQuery ajax요청
+			1. parameter생성
+			2. jQuery ajax요청
+			3. submit default중지
 			*/
+			
+			/* 1.parameter생성 */
+			var paramter=$('#f').serialize();
+			var paramterArray=$('#f').serializeArray();
+			var paramterArraytoString=$.param(paramterArray);
+			console.log("1.parameter $('form').serialize():"+paramter);
+			console.log("2.parameter $('form').serializeArray():"+paramterArray);
+			console.log("3.parameter $.param.(paramterArraytoString):"+paramterArraytoString);
+			
+			
+			
+			
+			/* 3.submit default중지 */
+			e.preventDefault();  
 			
 		});
 		
@@ -39,16 +56,21 @@ td {
 <body style="padding: 10px;">
 	<h2>jQuery에서 제공하는 Form 제어 메소드</h2>
 	<div>
-		<form id="f" action="xxx.jsp">
+	
+	   <!-- queryString 으로 body 로 전송한다 -->
+	   
+		<form id="f" action="xxx.jsp" >
 			아이디:<input type="text" name="id" id="id" /><br />
-			이이름:<input type="text" name="name" /><br /> 
+			이름:<input type="text" name="name" /><br /> 
 			별명[히든]:<input type="hidden" name="alias" value="제임스" /><br />
-			직업:
-			<select name="job">
-				<option value="1" selected="selected">job1</option>
-				<option value="2">job2</option>
-				<option value="3">job3</option>
-			</select> <br /> 
+			직업:<select name="job">
+						<option value="1" selected="selected">job1</option>
+						<option value="2">job2</option>
+						<option value="3">job3</option>
+				</select> <br />
+			 
+			<!-- input 은 image, submit 에 이벤트를 붙일수 없다 -->
+			
 			<input type="submit" value="전송[submit]" />
 		</form>
 	</div>

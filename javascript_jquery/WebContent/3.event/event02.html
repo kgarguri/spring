@@ -29,15 +29,22 @@ td {
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	
+	$('#txtInput').keydown(function(e){
+		$('#txtKeyCode').val('e.keyCode : '+e.keyCode+" , "+e.key);
+		//$('txtKeyCode').attr('value','e.keyCode : '+e.keyCode);
+		if (e.keyCode == 13) {
+			alert('가입할래?......');
+		}
+	});
 });
 </script>
 </head>
 <body style="padding: 10px;">
 	<h2>jQuery에서 제공하는 Event 핸들링 메소드</h2>
 	<div>
-		<input type="text" id="txtInput" /> <br/>
-		<input type="text" id="txtKeyCode" />
+		text:<input type="text" id="txtInput" /> <br/>
+		keycode:<input type="text" id="txtKeyCode" />
+		<!-- keycode:<input type="text" id="txtKeyCode" value = ''/>  -->
 	</div>
 </body>
 </html>
